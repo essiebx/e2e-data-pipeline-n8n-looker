@@ -9,7 +9,9 @@ This repository contains the architecture, configuration logic, and data structu
 By eliminating manual spreadsheet administration, this automation layout prevents transactional data drift, ensures immediate compliance tracking, and delivers zero-latency operational metrics to management.
 
 ---
+## Live Dashboard Preview
 
+View the live operational dashboard here: [Google Looker Studio Dashboard](https://datastudio.google.com/reporting/6ab2ba3a-8321-4c61-8bd4-2244f2567a11)
 ## System Architecture & Data Flow
 
 ```

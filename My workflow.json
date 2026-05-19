@@ -1,0 +1,332 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I",
+          "mode": "list",
+          "cachedResultName": "Agritech_Automation_CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 274504761,
+          "mode": "list",
+          "cachedResultName": "Form responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I/edit#gid=274504761"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "aafe8eb7-da4d-4522-8f9d-2bc4e32bc39e",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "IyIktg7vQ0OizYoJ",
+          "name": "Google Sheets Trigger OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I",
+          "mode": "list",
+          "cachedResultName": "Agritech_Automation_CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1437155954,
+          "mode": "list",
+          "cachedResultName": "Members",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I/edit#gid=1437155954"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Farmer_Name",
+              "lookupValue": "={{ $('Google Sheets Trigger').item.json[\"Farmer Name\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        176,
+        0
+      ],
+      "id": "f690edd2-c517-4d40-82e5-a307b392a230",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zkL1URjd87WwytEH",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I",
+          "mode": "list",
+          "cachedResultName": "Agritech_Automation_CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1740747587,
+          "mode": "list",
+          "cachedResultName": "Sales_Ledger",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nyz9N1A87-pAyzf7vIBMJgw0Ne6QvngtxUmDJOtW76I/edit#gid=1740747587"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $('Google Sheets Trigger').item.json[\"Timestamp\"] }}",
+            "Farmer_Name": "={{ $('Google Sheets Trigger').item.json[\"Farmer Name\"] }}",
+            "Phone_Number": "={{ $json[\"Contact_Phone\"] }}",
+            "Product": "={{ $('Google Sheets Trigger').item.json[\"Product Sold\"] }}",
+            "Quantity": "={{ $('Google Sheets Trigger').item.json[\"Quantity/Weight\"] }}",
+            "Total_Price": "={{ $('Google Sheets Trigger').item.json[\"Total Price in pounds\"] }}",
+            "Farm_Type": "={{ $json[\"Farm_Type\"] }}",
+            "Member_ID": "={{ $json[\"Member_ID\"] }}",
+            "Farm_Size_Hectares": "={{ $json[\"Farm_Size_Hectares\"] }}",
+            "Membership_Tier": "={{ $json[\"Membership_Tier\"] }}",
+            "Active_Loan_Balance_EUR": "={{ $json[\"Active_Loan_Balance_EUR\"] }}",
+            "Compliance_Status": "={{ $json[\"Compliance_Status\"] }}",
+            "Postal_Code": "={{ $json[\"Postal_Code\"] }}",
+            "Notes": "={{ $json[\"Notes\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Farmer_Name",
+              "displayName": "Farmer_Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone_Number",
+              "displayName": "Phone_Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Product",
+              "displayName": "Product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Quantity",
+              "displayName": "Quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Total_Price",
+              "displayName": "Total_Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Farm_Type",
+              "displayName": "Farm_Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Contact_Phone",
+              "displayName": "Contact_Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Member_ID",
+              "displayName": "Member_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Farm_Size_Hectares",
+              "displayName": "Farm_Size_Hectares",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Membership_Tier",
+              "displayName": "Membership_Tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Active_Loan_Balance_EUR",
+              "displayName": "Active_Loan_Balance_EUR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Compliance_Status",
+              "displayName": "Compliance_Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Postal_Code",
+              "displayName": "Postal_Code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        320,
+        48
+      ],
+      "id": "beb75345-48dc-4bff-b891-cdaabe0ac5c5",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zkL1URjd87WwytEH",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "98a26287-2748-4752-a715-43ffc2537c30",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "47c8677a60bcf003a3b620f1298ed9e53ad4d5bfe8fa4de200e6159f6b8ee6d3"
+  },
+  "id": "LbfMTYwiruf9j65q",
+  "tags": []
+}
